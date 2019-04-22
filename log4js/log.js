@@ -8,7 +8,7 @@ log4js.configure({
         },
         log_file:{//记录器2：输出到文件
             type : 'file',
-            filename: __dirname + `/logs/${programName}.log`,//文件目录，当目录文件或文件夹不存在时，会自动创建
+            filename: __dirname + `/logs/${programName}.log_file`,//文件目录，当目录文件或文件夹不存在时，会自动创建
             maxLogSize : 20971520,//文件最大存储空间（byte），当文件内容超过文件存储空间会自动生成一个文件test.log.1的序列自增长的文件
             backups : 3,//default value = 5.当文件内容超过文件存储空间时，备份文件的数量
             //compress : true,//default false.是否以压缩的形式保存新文件,默认false。如果true，则新增的日志文件会保存在gz的压缩文件内，并且生成后将不被替换，false会被替换掉
@@ -16,7 +16,7 @@ log4js.configure({
         },
         data_file:{//：记录器3：输出到日期文件
             type: "dateFile",
-            filename: __dirname + `/logs/${programName}`,//您要写入日志文件的路径
+            filename: __dirname + `/logs/${programName}.data_file`,//您要写入日志文件的路径
             alwaysIncludePattern: true,//（默认为false） - 将模式包含在当前日志文件的名称以及备份中
              daysToKeep:10,//时间文件 保存多少天，距离当前天daysToKeep以前的log将被删除
             //compress : true,//（默认为false） - 在滚动期间压缩备份文件（备份文件将具有.gz扩展名）
@@ -25,7 +25,7 @@ log4js.configure({
         },
        error_file:{//：记录器4：输出到error log
             type: "dateFile",
-            filename: __dirname + `/../logs/${programName}_error`,//您要写入日志文件的路径
+            filename: __dirname + `/logs/${programName}_error.error_file`,//您要写入日志文件的路径
             alwaysIncludePattern: true,//（默认为false） - 将模式包含在当前日志文件的名称以及备份中
             daysToKeep:10,//时间文件 保存多少天，距离当前天daysToKeep以前的log将被删除
             //compress : true,//（默认为false） - 在滚动期间压缩备份文件（备份文件将具有.gz扩展名）
@@ -43,27 +43,29 @@ log4js.configure({
     },
 });
 
-module.exports = log4js.getLogger('console');
-module.exports.error = log4js.getLogger('error_log');//error单独输出到一个文件中
+module.exports = log4js.getLogger()
 
 
 
 var logger = log4js.getLogger(); 
+
+console.log(log4js.getLogger())
+
 logger.info("1hello world categories-default test, this is info");
-logger.debug("1hello world categories-default test, this is debug");
-logger.warn("1hello world categories-default test, this is warn");
-logger.error("1hello world categories-default test, this is error");
+logger.debug("2hello world categories-default test, this is debug");
+logger.warn("3hello world categories-default test, this is warn");
+logger.error("4hello world categories-default test, this is error");
 
-logger = log4js.getLogger('production'); 
-logger.info("2hello world categories-production test, this is info");
-logger.debug("2hello world categories-production test, this is debug");
-logger.warn("2hello world categories-production test, this is warn");
-logger.error("2hello world categories-production test, this is error");
+// logger = log4js.getLogger('production'); 
+// logger.info("2hello world categories-production test, this is info");
+// logger.debug("2hello world categories-production test, this is debug");
+// logger.warn("2hello world categories-production test, this is warn");
+// logger.error("2hello world categories-production test, this is error");
 
-logger = log4js.getLogger('console'); //引用的categories 类型中的console  即输出到console控制台 输出日志级别info(大于info输出)
-logger.info("3hello world categories-console test");
+// logger = log4js.getLogger('console'); //引用的categories 类型中的console  即输出到console控制台 输出日志级别info(大于info输出)
+// logger.info("3hello world categories-console test");
 
-logger = log4js.getLogger('debug'); 
-logger.info("4hello world categories-debug test, this is info");
-logger.debug("4hello world categories-debug test, this is debug");
+// logger = log4js.getLogger('debug'); 
+// logger.info("4hello world categories-debug test, this is info");
+// logger.debug("4hello world categories-debug test, this is debug");
 

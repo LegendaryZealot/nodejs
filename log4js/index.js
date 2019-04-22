@@ -1,8 +1,7 @@
 var logHelper = require('./logHelper')
 
-console.log(logHelper)
-
-logHelper.error.error("fuck")
-logHelper.error.log('fuck')
-logHelper.error.warn('fuck')
+logHelper.log('fuck')
+logHelper.info('fuck')
+logHelper.warn('fuck')
+logHelper.error("fuck")
 
