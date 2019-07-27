@@ -18,6 +18,8 @@ mysqlPool.getConnection(function(err, connection){
             throw err;
         }else{
             console.log( rows );
+            console.log( rows[0] );
+            console.log( rows[0].name );
         }
         // conn.release(); // not work!!!
         mysqlPool.releaseConnection(connection)
